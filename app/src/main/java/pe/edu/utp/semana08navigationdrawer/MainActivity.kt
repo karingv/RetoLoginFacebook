@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import pe.edu.utp.semana08navigationdrawer.fragments.HomeFragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc01Fragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc02Fragment
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerPrincipal: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var nvPrincipal: NavigationView
-
+    private lateinit var analytics: FirebaseAnalytics
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
 //        splashScreen.setKeepOnScreenCondition{ true }
-
 
 
         this.drawerPrincipal = findViewById(R.id.dlPrincipal)
