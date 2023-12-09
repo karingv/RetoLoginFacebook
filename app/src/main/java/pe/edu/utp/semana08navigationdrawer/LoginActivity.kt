@@ -20,6 +20,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        btnRegister = findViewById(R.id.btnRegister)
+        btnLogin = findViewById(R.id.btnLogin)
+        etCorreo = findViewById(R.id.etCorreo)
+        etContraseña = findViewById(R.id.etContraseña)
         initData()
     }
 
@@ -46,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showHome( email: String, provider: ProviderType) {
         val homeIntent = Intent(this, MainActivity::class.java).apply {
-            putExtra("email", etCorreo)
+            putExtra("email", etCorreo.toString())
             putExtra("provider", provider.name)
 
         }
