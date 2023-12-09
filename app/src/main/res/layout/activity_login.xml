@@ -25,6 +25,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -41,6 +42,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/etContraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -59,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ll1">
 
         <Button
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:layout_marginEnd="30dp"
@@ -66,6 +69,7 @@
             android:textSize="20dp" />
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:text="Acceder"

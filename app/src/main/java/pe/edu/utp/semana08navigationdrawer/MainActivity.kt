@@ -16,6 +16,9 @@ import pe.edu.utp.semana08navigationdrawer.fragments.HomeFragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc01Fragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc02Fragment
 
+enum class ProviderType {
+    BASIC
+}
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
