@@ -1,11 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-
-
-    // Add the Google services Gradle plugin
-    id 'com.google.gms.google-services'
-
 }
 
 android {
@@ -26,7 +21,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
         }
     }
     compileOptions {
@@ -53,12 +47,4 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.code.gson:gson:2.10.1'
-
-
-    // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:32.7.0')
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics'
-
 }
