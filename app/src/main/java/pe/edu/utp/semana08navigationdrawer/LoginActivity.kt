@@ -19,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        initData()
     }
 
     fun initData() {
@@ -43,7 +45,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showHome( email: String, provider: ProviderType) {
-        val homeIntent = Intent(this, MainActivity::class.java)
+        val homeIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", etCorreo)
+            putExtra("provider", provider.name)
+
+        }
         startActivity(homeIntent)
     }
 
