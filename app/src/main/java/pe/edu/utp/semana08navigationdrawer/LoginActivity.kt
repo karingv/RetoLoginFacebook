@@ -20,14 +20,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        btnRegister = findViewById(R.id.btnRegister)
-        btnLogin = findViewById(R.id.btnLogin)
-        etCorreo = findViewById(R.id.etCorreo)
-        etContraseña = findViewById(R.id.etContraseña)
-        initData()
-    }
 
-    fun initData() {
+        initData()
         btnRegister.setOnClickListener {
             if (etCorreo.text.isNotEmpty() && etContraseña.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -45,7 +39,13 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+    }
 
+    fun initData() {
+        btnRegister = findViewById(R.id.btnRegister)
+        btnLogin = findViewById(R.id.btnLogin)
+        etCorreo = findViewById(R.id.etCorreo)
+        etContraseña = findViewById(R.id.etContraseña)
     }
 
     private fun showHome( email: String, provider: ProviderType) {
