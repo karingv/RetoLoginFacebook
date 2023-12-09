@@ -20,9 +20,7 @@ import pe.edu.utp.consumoserviciosclima.modelo.Ciudad
 import pe.edu.utp.semana08navigationdrawer.Network
 import pe.edu.utp.semana08navigationdrawer.R
 
-
 class HomeFragment : Fragment() {
-
     private lateinit var etCiudad: EditText
     private lateinit var btnClima: Button
     private lateinit var tvCiudad: TextView
