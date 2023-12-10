@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -48,6 +49,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         this.setNavigationDrawer()
         fragmentTransaction(HomeFragment())
+
+        val bundle = intent.extras
+        val email = bundle?.getString("email")
+        val provider = bundle?.getString("provider")
+        Toast.makeText(this,  "${email} // ${provider}", Toast.LENGTH_LONG).show()
+//        setup()
+
+    }
+
+    private fun setup( email: String, provider: String) {
+        title = "main"
 
     }
 

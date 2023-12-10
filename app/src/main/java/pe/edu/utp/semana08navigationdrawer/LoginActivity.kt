@@ -25,20 +25,31 @@ class LoginActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             if (etCorreo.text.isNotEmpty() && etContraseña.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    etCorreo.text.toString(),
-                    etContraseña.text.toString()
-                ).addOnCompleteListener {
+                    etCorreo.text.toString(),  etContraseña.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                        showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
                     } else {
                         showAlert()
                     }
 
                 }
-
-
             }
         }
+        btnLogin.setOnClickListener {
+            if (etCorreo.text.isNotEmpty() && etContraseña.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                    etCorreo.text.toString(),  etContraseña.text.toString()).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
+                    } else {
+                        showAlert()
+                    }
+
+                }
+            }
+        }
+
+
     }
 
     fun initData() {
@@ -50,9 +61,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showHome( email: String, provider: ProviderType) {
         val homeIntent = Intent(this, MainActivity::class.java).apply {
-            putExtra("email", etCorreo.toString())
+            putExtra("email", email)
             putExtra("provider", provider.name)
-
         }
         startActivity(homeIntent)
     }
@@ -60,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("Se he producido un error ")
-        builder.setPositiveButton("Acce", null)
+        builder.setMessage("Se he producido un error bla")
+        builder.setPositiveButton("Accept", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
