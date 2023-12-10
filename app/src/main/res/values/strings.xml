@@ -7,9 +7,10 @@
     <string name="msje_opc01_fragment">Estamos en la opcion 01</string>
     <string name="msje_opc02_fragment">Estamos en la opcion 02</string>
 
-    <string name="facebook_app_id">1234</string>
+
+    <string name="facebook_app_id">314037601538781</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="facebook_client_token">e5635f733bbc3686db4b39157aeb8c0a</string>
 
 
 </resources>
