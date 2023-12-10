@@ -23,15 +23,36 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"   />
 
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tbPrincipal"/>
+        <EditText
+            android:id="@+id/etProvider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/etCorreo"/>
+
         <FrameLayout
             android:id="@+id/flContenido"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/tbPrincipal">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/etProvider">
 
         </FrameLayout>
+
+        <Button
+            android:id="@+id/btnCerrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar"
+            app:layout_constraintTop_toBottomOf="@+id/flContenido"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvPrincipal"
