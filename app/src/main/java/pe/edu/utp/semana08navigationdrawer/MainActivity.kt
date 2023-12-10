@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -22,7 +23,8 @@ import pe.edu.utp.semana08navigationdrawer.fragments.Opc01Fragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc02Fragment
 
 enum class ProviderType {
-    BASIC
+    BASIC,
+    FACEBOOK
 }
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -57,7 +59,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bundle = intent.extras
         val email = bundle?.getString("email")
         val provider = bundle?.getString("provider")
-        Toast.makeText(this,  "${email} // ${provider}", Toast.LENGTH_LONG).show()
         setup(email ?: "", provider ?: "")
 
     }
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<EditText>(R.id.etProvider).setText(provider)
 
             findViewById<Button>(R.id.btnCerrar).setOnClickListener {
+
+//                val pref = getSharedPreferences("pe.edu.utp.semana08navigationdrawer")
+
+                if (provider == ProviderType.FACEBOOK.name){
+                    LoginManager.getInstance().logOut()
+                }
+
                 FirebaseAuth.getInstance().signOut()
                 onBackPressed()
             }

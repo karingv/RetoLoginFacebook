@@ -1,21 +1,29 @@
 package pe.edu.utp.semana08navigationdrawer
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
-import java.security.Provider
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var btnRegister: Button
     private lateinit var btnLogin: Button
     private lateinit var etCorreo: EditText
     private lateinit var etContraseña: EditText
+    private lateinit var btnFacebook: Button
+    private var callbackManager = CallbackManager.Factory.create();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +70,51 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<Button>(R.id.btnFacebook).setOnClickListener {
 
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
+
+            LoginManager.getInstance().registerCallback(callbackManager,
+                object : FacebookCallback<LoginResult> {
+
+                    override fun onCancel() {
+                        // App code
+                    }
+
+                    override fun onError(error: FacebookException) {
+                        // Mostrar un mensaje descriptivo del error
+                        showAlert(error.toString() ?: "Se ha producido un error.")
+                    }
+
+                    override fun onSuccess(result: LoginResult) {
+                        result?.let {
+                            val token = it.accessToken
+                            val credential = FacebookAuthProvider.getCredential(token.token)
+                            FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    showHome(it.result?.user?.email ?: "" , ProviderType.FACEBOOK)
+                                } else {
+                                    // Mostrar un mensaje descriptivo del error
+                                    val errorMsg  = when (val ex = it.exception) {
+                                        is FirebaseAuthException -> ex.message
+                                        else -> "Se ha producido un error."
+                                    }
+                                    showAlert(errorMsg ?: "Se ha producido un error.")
+
+                                }
+
+                            }
+                        }
+                    }
+
+                })
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     fun initData() {
