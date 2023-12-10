@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import pe.edu.utp.semana08navigationdrawer.fragments.HomeFragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc01Fragment
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.toolbar = findViewById(R.id.tbPrincipal)
         this.nvPrincipal = findViewById(R.id.nvPrincipal)
 
-
+        FirebaseApp.initializeApp(this)
 
         setSupportActionBar(this.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

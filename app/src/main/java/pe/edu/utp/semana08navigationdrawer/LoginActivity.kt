@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import java.security.Provider
 
 class LoginActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        FirebaseApp.initializeApp(this)
 
         initData()
         btnRegister.setOnClickListener {
@@ -29,7 +30,13 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
                     } else {
-                        showAlert()
+                        // Mostrar un mensaje descriptivo del error
+                        val errorMsg  = when (val ex = it.exception) {
+                            is FirebaseAuthException -> ex.message
+                            else -> "Se ha producido un error."
+                        }
+                        showAlert(errorMsg ?: "Se ha producido un error.")
+
                     }
 
                 }
@@ -42,7 +49,13 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
                     } else {
-                        showAlert()
+                        // Mostrar un mensaje descriptivo del error
+                        val errorMsg  = when (val ex = it.exception) {
+                            is FirebaseAuthException -> ex.message
+                            else -> "Se ha producido un error."
+                        }
+                        showAlert(errorMsg ?: "Se ha producido un error.")
+
                     }
 
                 }
@@ -67,10 +80,10 @@ class LoginActivity : AppCompatActivity() {
         startActivity(homeIntent)
     }
 
-    private fun showAlert() {
+    private fun showAlert(errorMsg: String)  {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("Se he producido un error bla")
+        builder.setMessage("${errorMsg}")
         builder.setPositiveButton("Accept", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()

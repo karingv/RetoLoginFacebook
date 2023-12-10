@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su correo"
-            android:textColor="@color/gris"
+            android:textColor="@color/black"
             android:textSize="30dp" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su contraseña"
-            android:textColor="@color/gris"
+            android:textColor="@color/black"
             android:textSize="30dp" />
     </LinearLayout>
 
