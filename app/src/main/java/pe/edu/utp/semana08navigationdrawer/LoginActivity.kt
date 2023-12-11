@@ -149,12 +149,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showHomeWithFacebook(profile: Profile ,email: String, provider: ProviderType) {
-        val imagenPerfil= profile?.getProfilePictureUri(500, 500)?.toString()
+        val userId= profile.id
+        val imageUrl= "https://graph.facebook.com/$userId/picture?type=large"
 
         val homeIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
-            putExtra("picture",imagenPerfil)
+            putExtra("picture",imageUrl)
         }
         startActivity(homeIntent)
     }
