@@ -58,14 +58,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
+        val name = bundle?.getString("name")
         val provider = bundle?.getString("provider")
-        setup(email ?: "", provider ?: "")
+        setup(email ?: "", name ?: "", provider ?: "")
 
     }
 
-        private fun setup(email: String, provider: String){
+        private fun setup(email: String, name: String, provider: String){
             title = "main"
             findViewById<EditText>(R.id.etCorreo).setText(email)
+            findViewById<EditText>(R.id.etName).setText(name)
             findViewById<EditText>(R.id.etProvider).setText(provider)
 
             findViewById<Button>(R.id.btnCerrar).setOnClickListener {
