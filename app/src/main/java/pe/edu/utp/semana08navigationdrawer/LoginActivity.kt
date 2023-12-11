@@ -2,8 +2,10 @@ package pe.edu.utp.semana08navigationdrawer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
@@ -11,7 +13,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.FacebookSdk
 import com.facebook.Profile
-import com.facebook.internal.ImageRequest.Companion.getProfilePictureUri
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.firebase.FirebaseApp
@@ -41,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     etCorreo.text.toString(),  etContraseña.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
+                        showHome(it.result?.user?.email ?: "" ,it.result?.user?.displayName ?: "" , ProviderType.BASIC)
                     } else {
                         // Mostrar un mensaje descriptivo del error
                         val errorMsg  = when (val ex = it.exception) {
@@ -60,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(
                     etCorreo.text.toString(),  etContraseña.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "" , ProviderType.BASIC)
+                        showHome(it.result?.user?.email ?: "" ,it.result?.user?.displayName ?: "" , ProviderType.BASIC)
                     } else {
                         // Mostrar un mensaje descriptivo del error
                         val errorMsg  = when (val ex = it.exception) {
@@ -97,10 +98,12 @@ class LoginActivity : AppCompatActivity() {
                             val credential = FacebookAuthProvider.getCredential(token.token)
                             FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                                 if (it.isSuccessful) {
+
                                     val profile= Profile.getCurrentProfile()
                                     if (profile != null) {
                                         showHomeWithFacebook(profile,it.result?.user?.email ?: "",ProviderType.FACEBOOK)
                                     }
+
                                 } else {
                                     // Mostrar un mensaje descriptivo del error
                                     val errorMsg  = when (val ex = it.exception) {
@@ -130,13 +133,16 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         etCorreo = findViewById(R.id.etCorreo)
         etContraseña = findViewById(R.id.etContraseña)
+
         btnFacebook = findViewById(R.id.btnFacebook)
     }
 
 
-    private fun showHome( email: String, provider: ProviderType) {
+
+    private fun showHome( email: String, name: String, provider: ProviderType) {
         val homeIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
+            putExtra("name", name)
             putExtra("provider", provider.name)
         }
         startActivity(homeIntent)

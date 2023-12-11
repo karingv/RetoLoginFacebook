@@ -61,19 +61,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bundle = intent.extras
         val email = bundle?.getString("email")
         val provider = bundle?.getString("provider")
+
         val imagenPerfil = bundle?.getString("picture")
         setup(email ?: "", provider ?: "", imagenPerfil ?: "")
 
     }
 
+
         private fun setup(email: String, provider: String, imagenPerfil: String){
+
             title = "main"
             findViewById<EditText>(R.id.etCorreo).setText(email)
             findViewById<EditText>(R.id.etProvider).setText(provider)
 
             val navHeader = nvPrincipal.getHeaderView(0)
             val perfil = navHeader.findViewById<ImageView>(R.id.ivPerfil)
-
             Log.d("imagen", "URL: $imagenPerfil")
             if (imagenPerfil.isNotEmpty()) {
                 Picasso.get().load(imagenPerfil).into(perfil)}
