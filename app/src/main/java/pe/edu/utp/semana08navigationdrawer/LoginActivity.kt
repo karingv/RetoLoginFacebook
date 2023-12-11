@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.Profile
+import com.facebook.internal.ImageRequest.Companion.getProfilePictureUri
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.firebase.FirebaseApp
@@ -28,6 +31,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        FacebookSdk.sdkInitialize(applicationContext)
         FirebaseApp.initializeApp(this)
 
         initData()
@@ -70,9 +75,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.btnFacebook).setOnClickListener {
+        btnFacebook.setOnClickListener {
 
-            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email","public_profile"))
 
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
@@ -92,7 +97,10 @@ class LoginActivity : AppCompatActivity() {
                             val credential = FacebookAuthProvider.getCredential(token.token)
                             FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    showHome(it.result?.user?.email ?: "" , ProviderType.FACEBOOK)
+                                    val profile= Profile.getCurrentProfile()
+                                    if (profile != null) {
+                                        showHomeWithFacebook(profile,it.result?.user?.email ?: "",ProviderType.FACEBOOK)
+                                    }
                                 } else {
                                     // Mostrar un mensaje descriptivo del error
                                     val errorMsg  = when (val ex = it.exception) {
@@ -122,7 +130,9 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         etCorreo = findViewById(R.id.etCorreo)
         etContraseña = findViewById(R.id.etContraseña)
+        btnFacebook = findViewById(R.id.btnFacebook)
     }
+
 
     private fun showHome( email: String, provider: ProviderType) {
         val homeIntent = Intent(this, MainActivity::class.java).apply {
@@ -131,6 +141,18 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
+
+    private fun showHomeWithFacebook(profile: Profile ,email: String, provider: ProviderType) {
+        val imagenPerfil= profile?.getProfilePictureUri(500, 500)?.toString()
+
+        val homeIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+            putExtra("picture",imagenPerfil)
+        }
+        startActivity(homeIntent)
+    }
+
 
     private fun showAlert(errorMsg: String)  {
         val builder = AlertDialog.Builder(this)

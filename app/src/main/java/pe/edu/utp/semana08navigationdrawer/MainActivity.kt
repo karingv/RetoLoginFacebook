@@ -4,9 +4,12 @@ package pe.edu.utp.semana08navigationdrawer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -16,8 +19,8 @@ import androidx.fragment.app.Fragment
 import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import pe.edu.utp.semana08navigationdrawer.fragments.HomeFragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc01Fragment
 import pe.edu.utp.semana08navigationdrawer.fragments.Opc02Fragment
@@ -32,7 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerPrincipal: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var nvPrincipal: NavigationView
-    private lateinit var analytics: FirebaseAnalytics
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,14 +61,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bundle = intent.extras
         val email = bundle?.getString("email")
         val provider = bundle?.getString("provider")
-        setup(email ?: "", provider ?: "")
+        val imagenPerfil = bundle?.getString("picture")
+        setup(email ?: "", provider ?: "", imagenPerfil ?: "")
 
     }
 
-        private fun setup(email: String, provider: String){
+        private fun setup(email: String, provider: String, imagenPerfil: String){
             title = "main"
             findViewById<EditText>(R.id.etCorreo).setText(email)
             findViewById<EditText>(R.id.etProvider).setText(provider)
+
+            val navHeader = nvPrincipal.getHeaderView(0)
+            val perfil = navHeader.findViewById<ImageView>(R.id.ivPerfil)
+
+            Log.d("imagen", "URL: $imagenPerfil")
+            if (imagenPerfil.isNotEmpty()) {
+                Picasso.get().load(imagenPerfil).into(perfil)}
 
             findViewById<Button>(R.id.btnCerrar).setOnClickListener {
 
@@ -95,9 +105,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.nvPrincipal.setNavigationItemSelectedListener(this)
 
     }
-
-
-
 
 
 
