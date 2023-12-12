@@ -150,7 +150,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showHomeWithFacebook(profile: Profile ,email: String, provider: ProviderType) {
         val userId= profile.id
-        val imageUrl= "https://graph.facebook.com/$userId/picture?type=large"
+        val imageUrl= "https://graph.facebook.com/$userId/picture?type=large&access_token=EAAEdnZAOvkt0BO5VyRu2BBchRpanqTzYgz2gfkbOXDAHp3WNviNuq86OlPC58QuyNGu6pIa9KUZCNZAfo0hdaDs8GJpxgr0wnUcU6UllAR1gE27Ai8obIzFXD76CJIic0YyIwFqzeQ2PPMjVGmgrpQ9h40UcPEwaZAZCopjVTXhgrZAGcXPWDcmNbKAGi91Xh14J2ErNHZAOxf3UESFegZDZD"
 
         val homeIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
