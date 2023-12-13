@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuthException
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var btnRegister: Button
+    private lateinit var btnCrearCuenta: Button
     private lateinit var btnLogin: Button
     private lateinit var etCorreo: EditText
     private lateinit var etContraseña: EditText
@@ -37,24 +37,9 @@ class LoginActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
 
         initData()
-        btnRegister.setOnClickListener {
-            if (etCorreo.text.isNotEmpty() && etContraseña.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    etCorreo.text.toString(),  etContraseña.text.toString()).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "" ,it.result?.user?.displayName ?: "" , ProviderType.BASIC)
-                    } else {
-                        // Mostrar un mensaje descriptivo del error
-                        val errorMsg  = when (val ex = it.exception) {
-                            is FirebaseAuthException -> ex.message
-                            else -> "Se ha producido un error."
-                        }
-                        showAlert(errorMsg ?: "Se ha producido un error.")
-
-                    }
-
-                }
-            }
+        btnCrearCuenta.setOnClickListener {
+            val homeIntent = Intent(this, RegisterActivity::class.java)
+            startActivity(homeIntent)
         }
         btnLogin.setOnClickListener {
             if (etCorreo.text.isNotEmpty() && etContraseña.text.isNotEmpty()) {
@@ -129,7 +114,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun initData() {
-        btnRegister = findViewById(R.id.btnRegister)
+        btnCrearCuenta = findViewById(R.id.btnCrearCuenta)
         btnLogin = findViewById(R.id.btnLogin)
         etCorreo = findViewById(R.id.etCorreo)
         etContraseña = findViewById(R.id.etContraseña)

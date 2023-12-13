@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="30dp"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:id="@+id/ll1"
@@ -58,36 +58,24 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/ll1">
+        app:layout_constraintTop_toBottomOf="@+id/ll1"
+        tools:ignore="UnknownIdInLayout">
 
         <Button
-            android:id="@+id/btnCrearCuenta"
-            android:layout_width="150dp"
+            android:id="@+id/btnRegister"
+            android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_marginEnd="30dp"
-            android:text="Crear cuenta"
+            android:text="Registrar"
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:text="Acceder"
+            android:id="@+id/btnBack"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:background="@color/red"
+            android:text="Login"
             android:textSize="20dp" />
 
     </LinearLayout>
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btnFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal"
-        android:drawableStart="@drawable/facebook"
-        android:text="Facebook"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll2" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
