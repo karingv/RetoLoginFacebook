@@ -25,23 +25,40 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"   />
 
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msje_opc01_fragment"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tbPrincipal"
+            app:layout_constraintVertical_bias="0.04" />
+
         <EditText
             android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tbPrincipal"/>
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
         <EditText
             android:id="@+id/etProvider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/etCorreo"/>
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/etProvider"/>
 
         <FrameLayout
@@ -61,6 +78,7 @@
             app:titleTextColor="@color/white"
             android:text="Cerrar"
             app:layout_constraintTop_toBottomOf="@+id/flContenido"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

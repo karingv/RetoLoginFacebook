@@ -4,18 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Inicio"
+            android:title="API Clima"
             android:icon="@drawable/ic_launcher_background"/>
 
         <item
             android:id="@+id/nav_opc01"
-            android:title="Opcion 01"
+            android:title="Inicio"
             android:icon="@drawable/ic_launcher_foreground"/>
 
         <item
             android:id="@+id/nav_opc02"
-            android:title="Opcion 02"
-            android:icon="@drawable/ic_launcher_background"/>
+            android:title="~Mantenimiento~"
+            android:icon="@drawable/ic_launcher_background"
+            android:checkable="false"/>
 
 
     </group>

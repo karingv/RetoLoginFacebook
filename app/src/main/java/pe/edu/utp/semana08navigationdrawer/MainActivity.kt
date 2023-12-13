@@ -35,17 +35,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerPrincipal: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var nvPrincipal: NavigationView
-
+    private lateinit var provider: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        val splashScreen = installSplashScreen()
-
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 //        splashScreen.setKeepOnScreenCondition{ true }
-
 
         this.drawerPrincipal = findViewById(R.id.dlPrincipal)
         this.toolbar = findViewById(R.id.tbPrincipal)
@@ -56,23 +54,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(this.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         this.setNavigationDrawer()
-        fragmentTransaction(HomeFragment())
+        fragmentTransaction(Opc01Fragment())
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
-        val provider = bundle?.getString("provider")
+        provider = bundle?.getString("provider").toString()
+        val name = bundle?.getString("name")
 
         val imagenPerfil = bundle?.getString("picture")
-        setup(email ?: "", provider ?: "", imagenPerfil ?: "")
+        setup(email ?: "", provider ?: "", imagenPerfil ?: "", name ?: "")
 
     }
 
 
-        private fun setup(email: String, provider: String, imagenPerfil: String){
+        private fun setup(email: String, provider: String, imagenPerfil: String, name: String){
 
             title = "main"
+            findViewById<TextView>(R.id.tvTitle).text = "Bienvenido: ${name}"
             findViewById<EditText>(R.id.etCorreo).setText(email)
+            findViewById<EditText>(R.id.etName).setText(name)
             findViewById<EditText>(R.id.etProvider).setText(provider)
+
+            val mensajeCompleto = "~En mantenimiento: ${name.split(" ").firstOrNull()}~"
+            Opc01Fragment.textBienvenido  = if (!mensajeCompleto.isNullOrEmpty()) {
+                mensajeCompleto
+            } else {
+                "~En mantenimiento~"
+            }
 
             val navHeader = nvPrincipal.getHeaderView(0)
             val perfil = navHeader.findViewById<ImageView>(R.id.ivPerfil)
@@ -81,18 +89,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Picasso.get().load(imagenPerfil).into(perfil)}
 
             findViewById<Button>(R.id.btnCerrar).setOnClickListener {
-
-//                val pref = getSharedPreferences("pe.edu.utp.semana08navigationdrawer")
-
-                if (provider == ProviderType.FACEBOOK.name){
-                    LoginManager.getInstance().logOut()
-                }
-
-                FirebaseAuth.getInstance().signOut()
-                onBackPressed()
+                cerrarSession(provider)
             }
 
         }
+
+    private fun cerrarSession(provider: Any) {
+//                val pref = getSharedPreferences("pe.edu.utp.semana08navigationdrawer")
+
+        if (provider == ProviderType.FACEBOOK.name){
+            LoginManager.getInstance().logOut()
+        }
+
+        FirebaseAuth.getInstance().signOut()
+        onBackPressed()
+    }
 
 
     private fun setNavigationDrawer() {
@@ -107,8 +118,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.nvPrincipal.setNavigationItemSelectedListener(this)
 
     }
-
-
 
     private fun fragmentTransaction(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.flContenido, fragment).commit()

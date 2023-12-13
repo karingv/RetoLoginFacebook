@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
 
                                     val profile= Profile.getCurrentProfile()
                                     if (profile != null) {
-                                        showHomeWithFacebook(profile,it.result?.user?.email ?: "",ProviderType.FACEBOOK)
+                                        showHomeWithFacebook(profile,it.result?.user?.email ?: "",ProviderType.FACEBOOK, it.result?.user?.displayName ?: "")
                                     }
 
                                 } else {
@@ -133,12 +133,13 @@ class LoginActivity : AppCompatActivity() {
         startActivity(homeIntent)
     }
 
-    private fun showHomeWithFacebook(profile: Profile ,email: String, provider: ProviderType) {
+    private fun showHomeWithFacebook(profile: Profile ,email: String, provider: ProviderType, name: String) {
         val userId= profile.id
         val imageUrl= "https://graph.facebook.com/$userId/picture?type=large&access_token=EAAEdnZAOvkt0BO5VyRu2BBchRpanqTzYgz2gfkbOXDAHp3WNviNuq86OlPC58QuyNGu6pIa9KUZCNZAfo0hdaDs8GJpxgr0wnUcU6UllAR1gE27Ai8obIzFXD76CJIic0YyIwFqzeQ2PPMjVGmgrpQ9h40UcPEwaZAZCopjVTXhgrZAGcXPWDcmNbKAGi91Xh14J2ErNHZAOxf3UESFegZDZD"
 
         val homeIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
+            putExtra("name", name)
             putExtra("provider", provider.name)
             putExtra("picture",imageUrl)
         }
