@@ -5,11 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:id="@+id/dlPrincipal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".MainActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -19,7 +21,7 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/yellow"
             app:titleTextColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/msje_opc01_fragment"
+            android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
             android:paddingBottom="20dp"
@@ -50,8 +53,9 @@
             android:id="@+id/etProvider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/black"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/etCorreo"/>
         <EditText
             android:id="@+id/etName"
@@ -72,10 +76,13 @@
 
         <Button
             android:id="@+id/btnCerrar"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
+            android:layout_margin="40dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            app:titleTextColor="@color/white"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:text="Cerrar"
             app:layout_constraintTop_toBottomOf="@+id/flContenido"/>
 

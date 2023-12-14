@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    android:id="@+id/authLayout"
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +20,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/red"
-            android:text="Correo"
-            android:textSize="30dp"
+            android:text="Correo:"
+            android:textColor="@color/black"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
         <EditText
@@ -32,17 +33,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su correo"
-            android:background="@color/white"
+            android:textColorHint="@color/black"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/red"
-            android:text="Contraseña"
-            android:textSize="30dp"
+            android:text="Contraseña:"
+            android:textColor="@color/black"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
         <EditText
@@ -51,16 +52,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su contraseña"
-            android:background="@color/white"
+            android:textColorHint="@color/black"
+            android:inputType="textPassword"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ll1"
@@ -70,10 +72,10 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            app:titleTextColor="@color/white"
+            android:backgroundTint="@color/green"
             android:text="Acceder"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            app:titleTextColor="@color/white" />
 
     </LinearLayout>
 
@@ -81,7 +83,7 @@
         android:id="@+id/ll3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ll2">
@@ -90,10 +92,10 @@
             android:id="@+id/btnCrearCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            app:titleTextColor="@color/white"
+            android:backgroundTint="@color/yellow"
             android:text="Crear cuenta"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            app:titleTextColor="@color/white" />
 
     </LinearLayout>
 
@@ -101,7 +103,7 @@
         android:id="@+id/ll4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/ll3">
@@ -110,42 +112,45 @@
             android:id="@+id/btnFacebook"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
             android:drawableStart="@drawable/facebook"
             android:text="Registro Con Facebook"
-            app:titleTextColor="@color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll3" />
+            app:layout_constraintTop_toBottomOf="@+id/ll3"
+            app:titleTextColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGoogle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
-            android:drawableStart="@drawable/google"
-            android:text="Registro Con Google"
+            android:layout_marginTop="30dp"
             android:background="@color/white"
+            android:drawableStart="@drawable/google"
+            android:text="Continue with Google"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll3" />
+            app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGithub"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
-            android:drawableStart="@drawable/github"
-            android:text="Registro Con GitHub"
+            android:layout_marginTop="30dp"
             android:background="@color/white"
+            android:drawableStart="@drawable/github"
+            android:text="Continue with GitHub"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll3" />
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
 
     </LinearLayout>
 

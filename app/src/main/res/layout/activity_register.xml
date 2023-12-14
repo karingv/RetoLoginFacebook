@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
+    android:background="@color/white"
     tools:context=".RegisterActivity">
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
@@ -20,9 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Correo"
-            android:textSize="30dp"
-            android:textColor="@color/red"
+            android:text="Correo:"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <EditText
@@ -31,17 +33,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su correo"
-            android:background="@color/white"
+            android:textColorHint="@color/black"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Contraseña"
-            android:textSize="30dp"
-            android:textColor="@color/red"
+            android:text="Contraseña:"
+            android:textSize="25dp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <EditText
@@ -50,18 +52,18 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Ingrese su contraseña"
-            android:background="@color/white"
+            android:textColorHint="@color/black"
             android:textColor="@color/black"
             android:ems="10"
             android:inputType="textPassword"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ll1"
@@ -71,8 +73,8 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            app:titleTextColor="@color/white"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/white"
             android:text="Registrar"
             android:textSize="20dp" />
 
@@ -82,7 +84,7 @@
         android:id="@+id/ll3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ll2"
@@ -92,8 +94,8 @@
             android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            app:titleTextColor="@color/white"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
             android:text="ir a Login"
             android:textSize="20dp" />
 
