@@ -1,7 +1,9 @@
 package pe.edu.utp.semana08navigationdrawer
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +30,9 @@ import pe.edu.utp.semana08navigationdrawer.fragments.Opc02Fragment
 
 enum class ProviderType {
     BASIC,
-    FACEBOOK
+    GOOGLE,
+    FACEBOOK,
+    GITHUB
 }
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -72,6 +76,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val imagenPerfil = bundle?.getString("picture")
         setup(email ?: "", provider ?: "", imagenPerfil ?: "", name ?: "")
 
+
+        //Guardado de datos
+        val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.putString("email",email)
+        prefs.putString("provider", provider)
+        prefs.apply()
     }
 
     private fun initData() {
@@ -121,6 +131,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun cerrarSession(provider: Any) {
 //                val pref = getSharedPreferences("pe.edu.utp.semana08navigationdrawer")
+        val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.clear()
+        prefs.apply()
 
         if (provider == ProviderType.FACEBOOK.name){
             LoginManager.getInstance().logOut()

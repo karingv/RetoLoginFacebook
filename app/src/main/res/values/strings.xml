@@ -9,8 +9,11 @@
 
 
     <string name="facebook_app_id">314037601538781</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="fb_login_protocol_scheme">fb314037601538781</string>
+    <string name="facebook_client_token">e5635f733bbc3686db4b39157aeb8c0a</string>
+
+    <string name="prefs_file">pe.edu.utp.semana08navigationdrawer.PREFERENCE_FILE_KEY</string>
+    <string name="default_web_client_id">611565246160-p4u03759dgvhb5v22e3obn4ofgfhkdok.apps.googleusercontent.com</string>
 
 
 </resources>
